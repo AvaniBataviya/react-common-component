@@ -1,5 +1,6 @@
 import React from "react";
 import { FormGroup, FormText, Input, Label } from "reactstrap";
+import PropTypes from "prop-types";
 import { getRegExp, getSentenceFromCamelCase } from "../helper";
 
 const CustomInput = ({
@@ -22,15 +23,15 @@ const CustomInput = ({
   validationHandler,
   value,
 }) => {
-  const onChangeHandler = (e, onInputChange) => {
-    const { name, value, type, checked } = e.target;
+  const onChangeHandler = (event) => {
+    const { name, value, type, checked } = event.target;
     const inputValue = type === "checkbox" ? checked : value;
-    onInputChange(name, inputValue);
+    onChange && onChange(name, inputValue);
   };
 
-  const onValidationChange = (e, validationHandler) => {
+  const onValidationChange = (event) => {
     if (!validationHandler) return;
-    const { value } = e.target;
+    const { value } = event.target;
     let errorMessage = "";
     if (!value && isRequired) {
       errorMessage = `Please enter ${getSentenceFromCamelCase(name)}.`;
@@ -70,13 +71,52 @@ const CustomInput = ({
         className={className}
         style={style}
         disabled={disabled}
-        onChange={(e) => onChangeHandler(e, onChange)}
-        onBlur={(e) => onValidationChange(e, validationHandler)}
+        onChange={onChangeHandler}
+        onBlur={onValidationChange}
       />
       {helperText && <FormText color='muted'>{helperText}</FormText>}
       {error ? <span className='text-danger fs-12'>{error}</span> : null}
     </FormGroup>
   );
+};
+
+CustomInput.defaultProps = {
+  checked: false,
+  className: "",
+  disabled: false,
+  error: "",
+  fixLength: 0,
+  helperText: "",
+  isRequired: false,
+  label: "",
+  minLength: 0,
+  maxLength: 0,
+  placeholder: "",
+  reqType: "",
+  style: {},
+  type: "text",
+  validationHandler: () => {},
+};
+
+CustomInput.propTypes = {
+  checked: PropTypes.bool,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  error: PropTypes.string,
+  fixLength: PropTypes.number,
+  helperText: PropTypes.string,
+  isRequired: PropTypes.bool,
+  label: PropTypes.string,
+  minLength: PropTypes.number,
+  maxLength: PropTypes.number,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  reqType: PropTypes.string,
+  style: PropTypes.object,
+  type: PropTypes.string,
+  validationHandler: PropTypes.func,
+  value: PropTypes.any.isRequired,
 };
 
 export default CustomInput;

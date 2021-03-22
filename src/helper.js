@@ -12,21 +12,21 @@ export const getSentenceFromCamelCase = (message) => {
 };
 
 export const getRegExp = (type) => {
-  let regx = null;
+  let regex = null;
   switch (type) {
     case "email":
-      regx = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g;
+      regex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g;
       break;
     case "number":
-      regx = /^[0-9]*$/;
+      regex = /^[0-9]*$/;
       break;
     case "password":
-      regx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
       break;
     default:
       break;
   }
-  return regx;
+  return regex;
 };
 
 export const checkValidation = (errors, data) => {
