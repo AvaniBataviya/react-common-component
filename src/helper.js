@@ -32,7 +32,7 @@ export const getRegExp = (type) => {
 export const checkValidation = (errors, data) => {
   const finalErrors = {};
   Object.keys(data).forEach((key) => {
-    if (data[key] === "" || data[key] === {}) {
+    if (!data[key]) {
       finalErrors[key] = `Please enter ${getSentenceFromCamelCase(key)}.`;
     }
   });

@@ -5,3 +5,7 @@
 .h-100vh {
   height: 100vh;
 }
+
+.react_select--is-disabled {
+  pointer-events: unset !important;
+}
