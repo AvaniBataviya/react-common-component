@@ -9,3 +9,7 @@
 .react_select--is-disabled {
   pointer-events: unset !important;
 }
+
+.react_select__menu {
+  z-index: 2 !important;
+}

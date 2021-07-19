@@ -8,7 +8,7 @@ export const getSentenceFromCamelCase = (message) => {
         ? " " + messages[i].toLowerCase()
         : messages[i];
   }
-  return errorMessage.trim();
+  return (errorMessage[0].toUpperCase() + errorMessage.slice(1)).trim();
 };
 
 export const getRegExp = (type) => {
@@ -33,7 +33,7 @@ export const checkValidation = (errors, data) => {
   const finalErrors = {};
   Object.keys(data).forEach((key) => {
     if (!data[key]) {
-      finalErrors[key] = `Please enter ${getSentenceFromCamelCase(key)}.`;
+      finalErrors[key] = `${getSentenceFromCamelCase(key)} is required.`;
     }
   });
   Object.keys(errors).forEach((key) => {

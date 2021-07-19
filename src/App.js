@@ -9,6 +9,7 @@ import {
   Row,
 } from "reactstrap";
 import "./App.css";
+import CheckBox from "./components/CheckBox";
 import CustomInput from "./components/CustomInput";
 import ReactSelect from "./components/ReactSelect";
 import { checkValidation } from "./helper";
@@ -17,6 +18,7 @@ const initailValue = {
   email: "",
   password: "",
   flavour: null,
+  terms: false,
 };
 const App = () => {
   const [formData, setFormData] = useState(initailValue);
@@ -28,11 +30,12 @@ const App = () => {
   ];
 
   const onSubmit = () => {
-    const { email, password, flavour } = formData;
+    const { email, password, flavour, terms } = formData;
     const validationError = checkValidation(errors, {
       email,
       password,
       flavour: flavour?.value ? flavour.value : flavour,
+      terms,
     });
     if (Object.keys(validationError).length !== 0) {
       setErrors(validationError);
@@ -52,7 +55,8 @@ const App = () => {
     });
   };
 
-  const { email, password, flavour } = formData;
+  const { email, password, flavour, terms } = formData;
+
   return (
     <Container>
       <Row className='h-100vh align-items-center'>
@@ -97,6 +101,15 @@ const App = () => {
                 isRequired
                 onChange={onChange}
                 error={errors.flavour}
+                validationHandler={validationHandler}
+              />
+              <CheckBox
+                name='terms'
+                value={terms}
+                label='Are you agree on terms?'
+                isRequired
+                onChange={onChange}
+                error={errors.terms}
                 validationHandler={validationHandler}
               />
 

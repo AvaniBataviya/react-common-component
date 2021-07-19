@@ -27,7 +27,6 @@ const ReactSelect = ({
   const selectRef = React.useRef();
 
   const onChangeHandler = (value) => {
-    console.log("on change", value);
     onChange && onChange(name, value);
   };
   const onValidationChange = (value) => {
