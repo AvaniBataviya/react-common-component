@@ -11,6 +11,7 @@ import {
 import "./App.css";
 import CheckBox from "./components/CheckBox";
 import CustomInput from "./components/CustomInput";
+import RadioButton from "./components/RadioButton";
 import ReactSelect from "./components/ReactSelect";
 import { checkValidation } from "./helper";
 
@@ -19,6 +20,7 @@ const initailValue = {
   password: "",
   flavour: null,
   terms: false,
+  employment: "fullEmployment",
 };
 const App = () => {
   const [formData, setFormData] = useState(initailValue);
@@ -55,8 +57,11 @@ const App = () => {
     });
   };
 
-  const { email, password, flavour, terms } = formData;
-
+  const { email, password, flavour, terms, employment } = formData;
+  const employmentOptions = [
+    { label: "Full Employment", value: "fullEmployment" },
+    { label: "Contractor", value: "contractor" },
+  ];
   return (
     <Container>
       <Row className='h-100vh align-items-center'>
@@ -103,6 +108,17 @@ const App = () => {
                 error={errors.flavour}
                 validationHandler={validationHandler}
               />
+
+              <RadioButton
+                name='employment'
+                value={employment}
+                label='Slect employement'
+                onChange={onChange}
+                error={errors.employment}
+                validationHandler={validationHandler}
+                options={employmentOptions}
+              />
+
               <CheckBox
                 name='terms'
                 value={terms}
