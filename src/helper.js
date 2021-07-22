@@ -43,3 +43,7 @@ export const checkValidation = (errors, data) => {
   });
   return finalErrors;
 };
+
+export const getFileStorageBaseUrl = () => {
+  return "https://thumbs.dreamstime.com";
+};

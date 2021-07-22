@@ -8,9 +8,10 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import "./App.css";
+import "./App.scss";
 import CheckBox from "./components/CheckBox";
 import CustomInput from "./components/CustomInput";
+import FileUpload from "./components/FileUpload";
 import RadioButton from "./components/RadioButton";
 import ReactSelect from "./components/ReactSelect";
 import { checkValidation } from "./helper";
@@ -21,6 +22,9 @@ const initailValue = {
   flavour: null,
   terms: false,
   employment: "fullEmployment",
+  attachment: [
+    "/b/yellow-crash-test-dummy-yellow-crash-test-dummy-car-seat-116968697.jpg",
+  ],
 };
 const App = () => {
   const [formData, setFormData] = useState(initailValue);
@@ -32,14 +36,16 @@ const App = () => {
   ];
 
   const onSubmit = () => {
-    const { email, password, flavour, terms } = formData;
+    const { email, password, flavour, terms, attachment } = formData;
     const validationError = checkValidation(errors, {
       email,
       password,
       flavour: flavour?.value ? flavour.value : flavour,
       terms,
+      attachment,
     });
     if (Object.keys(validationError).length !== 0) {
+      console.log(validationError);
       setErrors(validationError);
     } else {
       alert("Submiting.!!!");
@@ -57,7 +63,7 @@ const App = () => {
     });
   };
 
-  const { email, password, flavour, terms, employment } = formData;
+  const { email, password, flavour, terms, employment, attachment } = formData;
   const employmentOptions = [
     { label: "Full Employment", value: "fullEmployment" },
     { label: "Contractor", value: "contractor" },
@@ -117,6 +123,16 @@ const App = () => {
                 error={errors.employment}
                 validationHandler={validationHandler}
                 options={employmentOptions}
+              />
+              <FileUpload
+                name='attachment'
+                label='Attachment (if any)'
+                onChange={onChange}
+                validationHandler={validationHandler}
+                multiple
+                maxFiles={2}
+                value={attachment}
+                error={errors.attachment}
               />
 
               <CheckBox
