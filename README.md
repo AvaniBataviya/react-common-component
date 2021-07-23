@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# Form reusable common coponent with manual error handling in react hooks
+
+## `Below components are available.`
+1) Input 
+2) Check box
+3) Radio button
+4) Select (react-select)
+5) File upload (react-dropzone)
+6) Date picker (react-datepicker)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
