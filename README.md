@@ -1,4 +1,4 @@
-# Form reusable common coponent with manual error handling in react hooks
+# React form reusable common coponent with manual error handling and hooks
 
 ## `Below components are available.`
 1) Input 
