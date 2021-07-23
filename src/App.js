@@ -8,8 +8,8 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import "./App.scss";
 import CheckBox from "./components/CheckBox";
+import CustomDatePicker from "./components/CustomDatePicker";
 import CustomInput from "./components/CustomInput";
 import FileUpload from "./components/FileUpload";
 import RadioButton from "./components/RadioButton";
@@ -25,6 +25,7 @@ const initailValue = {
   attachment: [
     "/b/yellow-crash-test-dummy-yellow-crash-test-dummy-car-seat-116968697.jpg",
   ],
+  birthDate: null,
 };
 const App = () => {
   const [formData, setFormData] = useState(initailValue);
@@ -36,16 +37,16 @@ const App = () => {
   ];
 
   const onSubmit = () => {
-    const { email, password, flavour, terms, attachment } = formData;
+    const { email, password, flavour, terms, attachment, birthDate } = formData;
     const validationError = checkValidation(errors, {
       email,
       password,
       flavour: flavour?.value ? flavour.value : flavour,
       terms,
       attachment,
+      birthDate,
     });
     if (Object.keys(validationError).length !== 0) {
-      console.log(validationError);
       setErrors(validationError);
     } else {
       alert("Submiting.!!!");
@@ -63,7 +64,8 @@ const App = () => {
     });
   };
 
-  const { email, password, flavour, terms, employment, attachment } = formData;
+  const { email, password, flavour, terms, employment, attachment, birthDate } =
+    formData;
   const employmentOptions = [
     { label: "Full Employment", value: "fullEmployment" },
     { label: "Contractor", value: "contractor" },
@@ -104,6 +106,17 @@ const App = () => {
                 helperText='Password must contain one capital latter, number and specical character with at least 8 character long.'
               />
 
+              <CustomDatePicker
+                name='birthDate'
+                label='Select birth date'
+                value={birthDate}
+                onChange={onChange}
+                error={errors.birthDate}
+                isRequired
+                placeholder='Select birth date'
+                maxDate={new Date()}
+              />
+
               <ReactSelect
                 name='flavour'
                 value={flavour}
@@ -124,6 +137,7 @@ const App = () => {
                 validationHandler={validationHandler}
                 options={employmentOptions}
               />
+
               <FileUpload
                 name='attachment'
                 label='Attachment (if any)'

@@ -14,6 +14,7 @@
   z-index: 2 !important;
 }
 
+// file upload
 .file-input {
   .dropzone {
     background-color: transparent;
@@ -96,5 +97,61 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+//date picker
+.react-datepicker-wrapper {
+  width: 100%;
+  .disabled {
+    background-color: hsl(0, 0%, 95%);
+    cursor: not-allowed;
+  }
+}
+
+.react-datepicker-popper {
+  width: 100%;
+  z-index: 2;
+  .react-datepicker {
+    background-color: white;
+    width: 100%;
+  }
+  .react-datepicker__header {
+    width: 100%;
+  }
+  .react-datepicker__day-names,
+  .react-datepicker__week {
+    display: flex;
+    justify-content: space-around;
+  }
+  .react-datepicker__month-container {
+    width: 100%;
+  }
+  // time picker
+  .react-datepicker__time-container {
+    width: 100%;
+    .react-datepicker__time {
+      .react-datepicker__time-box {
+        width: 100%;
+      }
+    }
+  }
+  // year picker
+  .react-datepicker__year {
+    display: flex;
+    justify-content: center;
+  }
+  .react-datepicker__year-wrapper {
+    justify-content: space-around;
+  }
+}
+
+//date time picker
+.react-custom-datepicker {
+  .react-datepicker__month-container {
+    width: calc(100% - 85px);
+  }
+  .react-datepicker__time-container {
+    width: 85px;
   }
 }
